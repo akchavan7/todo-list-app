@@ -4,12 +4,14 @@ const app = express();
 
 const PORT = process.env.PORT | 8080;
 
-app.use(
-  cors({
-    credentials: true,
-    origin: "*",
-  })
-);
+const corsOptions = {
+  origin: "*",
+  methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+  preflightContinue: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
