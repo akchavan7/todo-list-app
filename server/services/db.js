@@ -1,4 +1,4 @@
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 
 const config = {
   host: "localhost",
@@ -6,9 +6,16 @@ const config = {
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
   database: process.env.DB_NAME,
+  connectTimeout: 60000,
 };
 
 console.log(config);
 
-const con = mysql.createConnection(config);
-module.exports = con;
+async function query(sql, params) {
+  const connection = await mysql.createConnection(config);
+  const [results] = await connection.execute(sql, params);
+
+  return results;
+}
+
+module.exports = { query };

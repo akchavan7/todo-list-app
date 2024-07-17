@@ -1,14 +1,10 @@
 const express = require("express");
 var mysql = require("mysql");
 const router = express.Router();
-const con = require("../services/db");
+const todoOps = require("../services/todoOps");
 
-router.get("/test", (req, res) => {
-  res.send("Test route in main controller");
-  con.connect((err) => {
-    if (err) throw err;
-    console.log("Connected to database");
-  });
+router.get("/test", async (req, res) => {
+  res.json(await todoOps.getCurrentTasks());
 });
 
 module.exports = router;
