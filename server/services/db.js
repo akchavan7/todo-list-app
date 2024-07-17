@@ -6,12 +6,9 @@ const config = {
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
   database: process.env.DB_NAME,
-  connectionTimeout: 10000000,
 };
 
-const con = mysql.createConnection(config);
+console.log(config);
 
-con.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to database");
-});
+const con = mysql.createConnection(config);
+module.exports = con;

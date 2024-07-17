@@ -4,7 +4,7 @@
   "description": "Demo todo list application",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --env-file=.env index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Akshay Chavan",
@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "mysql": "^2.18.1",
+    "mysql2": "^3.10.3",
     "nodemon": "^3.1.4"
   }
 }
