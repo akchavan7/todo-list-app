@@ -1,0 +1,13 @@
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(31, 36, 214);
+  background: radial-gradient(
+    circle,
+    rgba(31, 36, 214, 1) 0%,
+    rgba(137, 114, 237, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  padding: 5% 0 5% 0;
+}
