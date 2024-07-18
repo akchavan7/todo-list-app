@@ -17,6 +17,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .todo-input {
@@ -59,4 +61,8 @@
     rgba(17, 122, 255, 1) 100%
   );
   padding: 16px 22px;
+}
+
+.task-list {
+  margin-top: 8%;
 }
