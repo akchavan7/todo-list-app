@@ -42,7 +42,6 @@ export default function TaskList(props) {
     const res = await updateTask(id, inputRef.current.value);
     console.log(res);
     if (res.status === 200) {
-      console.log("dispatching update task");
       store.dispatch({
         type: actionType.UPDATE_TASK,
         payload: { id: id, text: inputRef.current.value },

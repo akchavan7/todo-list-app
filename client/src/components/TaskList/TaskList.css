@@ -16,6 +16,13 @@
   margin-bottom: 5%;
 }
 
+.todo-row:hover {
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 4px 6px 14px -4px rgba(207, 207, 207, 1);
+  -moz-box-shadow: inset 4px 6px 14px -4px rgba(207, 207, 207, 1);
+  box-shadow: inset 4px 6px 14px -4px rgba(207, 207, 207, 1);
+}
+
 .todo-row:nth-child(4n + 1) {
   background: linear-gradient(
     90deg,

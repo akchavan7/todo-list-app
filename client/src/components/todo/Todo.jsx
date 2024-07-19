@@ -52,6 +52,28 @@ export default function Todo() {
 
   const taskList = currentVisible ? currentTasks : archivedTasks;
 
+  function displayTaskList(taskList) {
+    return taskList.map((task, i) => {
+      if (
+        i == 0 ||
+        areDatesDifferent(
+          currentTasks[i].timestamp,
+          currentTasks[i - 1].timestamp
+        )
+      ) {
+        return (
+          <>
+            <div className="date">
+              {formatTimestamp(currentTasks[i].timestamp)}
+            </div>
+            <TaskList key={task.id} id={task.id} text={task.text} />
+          </>
+        );
+      }
+      return <TaskList key={task.id} id={task.id} text={task.text} />;
+    });
+  }
+
   return (
     <div className="list-container">
       <h2 className="title">What's the plan for Today?</h2>
@@ -62,27 +84,7 @@ export default function Todo() {
           handleSubmit={handleSubmit}
           btnLabel={"Add Todo"}
         />
-        <div className="task-list">
-          {taskList.map((task, i) => {
-            if (
-              i == 0 ||
-              areDatesDifferent(
-                currentTasks[i].timestamp,
-                currentTasks[i - 1].timestamp
-              )
-            ) {
-              return (
-                <>
-                  <div className="date">
-                    {formatTimestamp(currentTasks[i].timestamp)}
-                  </div>
-                  <TaskList key={task.id} id={task.id} text={task.text} />
-                </>
-              );
-            }
-            return <TaskList key={task.id} id={task.id} text={task.text} />;
-          })}
-        </div>
+        <div className="task-list">{displayTaskList(taskList)}</div>
       </div>
     </div>
   );

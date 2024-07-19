@@ -1,3 +1,10 @@
 .tabs-group {
   margin-bottom: 5%;
 }
+
+.btn-active {
+  background-color: #0e59a2 !important;
+  -webkit-box-shadow: inset 4px 6px 14px -4px rgba(207, 207, 207, 1) !important;
+  -moz-box-shadow: inset 4px 6px 14px -4px rgba(207, 207, 207, 1) !important;
+  box-shadow: inset 4px 6px 14px -4px rgba(207, 207, 207, 1) !important;
+}

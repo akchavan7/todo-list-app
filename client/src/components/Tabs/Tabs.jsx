@@ -16,11 +16,7 @@ export default function Tabs(props) {
     >
       <Button
         id="current"
-        sx={
-          currentVisible
-            ? { backgroundColor: "#0e59a2" }
-            : { backgroundColor: "none" }
-        }
+        className={currentVisible ? "btn-active" : ""}
         endIcon={<CheckBoxIcon />}
         onClick={handleTabChange}
       >
@@ -28,11 +24,7 @@ export default function Tabs(props) {
       </Button>
       <Button
         id="archive"
-        sx={
-          currentVisible
-            ? { backgroundColor: "none" }
-            : { backgroundColor: "#0e59a2" }
-        }
+        className={currentVisible ? "" : "btn-active"}
         endIcon={<ArchiveIcon />}
         onClick={handleTabChange}
       >

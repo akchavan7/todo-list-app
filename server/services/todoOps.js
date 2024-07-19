@@ -1,12 +1,16 @@
 const execute = require("../helpers/queryRunner");
 
 async function getCurrentTasks() {
-  const rows = await execute(`SELECT * FROM todo_list WHERE status="Pending"`);
+  const rows = await execute(
+    `SELECT * FROM todo_list WHERE status="Pending" ORDER BY timestamp DESC`
+  );
   return rows;
 }
 
 async function getArchivedTasks() {
-  const rows = await execute(`SELECT * FROM todo_list WHERE status="Done"`);
+  const rows = await execute(
+    `SELECT * FROM todo_list WHERE status="Done" ORDER BY timestamp DESC`
+  );
   return rows;
 }
 
