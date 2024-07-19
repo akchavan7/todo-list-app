@@ -46,3 +46,11 @@
   font-size: 24px;
   cursor: pointer;
 }
+
+.done-task {
+  text-decoration: line-through;
+}
+
+.undone-task {
+  text-decoration: none;
+}

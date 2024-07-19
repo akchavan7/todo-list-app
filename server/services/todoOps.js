@@ -47,6 +47,16 @@ async function markDone(id) {
   return { status: 401, message: "Could not mark done" };
 }
 
+async function markUndone(id) {
+  const result = await execute(
+    `UPDATE todo_list SET status = "Pending" WHERE id = ${id};`
+  );
+  if (result.affectedRows === 1) {
+    return { status: 200, message: "Task has been marked as undone" };
+  }
+  return { status: 401, message: "Could not mark undone" };
+}
+
 module.exports = {
   getCurrentTasks,
   getArchivedTasks,
@@ -54,4 +64,5 @@ module.exports = {
   updateTask,
   getMostRecentID,
   markDone,
+  markUndone,
 };

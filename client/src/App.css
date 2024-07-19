@@ -9,5 +9,31 @@
   );
   display: flex;
   justify-content: center;
-  padding: 5% 0 5% 0;
+  padding: 3% 0 3% 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(93, 12, 255, 1) #000000;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a85ae7;
+  border-radius: 8px;
+  border: 3px solid #ffffff;
 }

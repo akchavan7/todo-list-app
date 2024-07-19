@@ -6,6 +6,8 @@ import TaskList from "../TaskList/TaskList";
 import store from "../../store/store";
 import * as actionType from "../../store/actionTypes";
 import { addNewTask } from "../../services/mainService";
+import TodoInput from "./TodoInput";
+import { areDatesDifferent, formatTimestamp } from "../../utilities/helper";
 
 export default function Todo() {
   const [currentVisible, setCurrentVisible] = useState(true);
@@ -30,13 +32,10 @@ export default function Todo() {
     return () => unsubscribe();
   }, []);
 
-  //   const handleChange = (e) => {
-  //     setInput(e.target.value);
-  //   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const text = inputRef.current.value;
+    if (text.length == 0) return;
     const response = await addNewTask(text);
     if (response.status === 200) {
       store.dispatch({ type: actionType.ADD_TASK, payload: { text: text } });
@@ -51,31 +50,38 @@ export default function Todo() {
     });
   };
 
+  const taskList = currentVisible ? currentTasks : archivedTasks;
+
   return (
     <div className="list-container">
       <h2 className="title">What's the plan for Today?</h2>
       <Tabs handleTabChange={handleTabChange} currentVisible={currentVisible} />
       <div className="tab-panel">
-        <div className="task-input">
-          <input
-            placeholder="Task for today is..."
-            //   onChange={handleChange}
-            name="text"
-            className="todo-input"
-            ref={inputRef}
-          />
-          <button onClick={handleSubmit} className="todo-button">
-            Add todo
-          </button>
-        </div>
+        <TodoInput
+          inputRef={inputRef}
+          handleSubmit={handleSubmit}
+          btnLabel={"Add Todo"}
+        />
         <div className="task-list">
-          {currentVisible
-            ? currentTasks.map((task) => {
-                return <TaskList key={task.id} id={task.id} text={task.text} />;
-              })
-            : archivedTasks.map((task) => {
-                return <TaskList key={task.id} id={task.id} text={task.text} />;
-              })}
+          {taskList.map((task, i) => {
+            if (
+              i == 0 ||
+              areDatesDifferent(
+                currentTasks[i].timestamp,
+                currentTasks[i - 1].timestamp
+              )
+            ) {
+              return (
+                <>
+                  <div className="date">
+                    {formatTimestamp(currentTasks[i].timestamp)}
+                  </div>
+                  <TaskList key={task.id} id={task.id} text={task.text} />
+                </>
+              );
+            }
+            return <TaskList key={task.id} id={task.id} text={task.text} />;
+          })}
         </div>
       </div>
     </div>

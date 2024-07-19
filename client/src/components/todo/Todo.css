@@ -6,6 +6,7 @@
   border-radius: 15px;
   padding: 30px;
   color: white;
+  overflow-y: scroll;
 }
 
 .title {
@@ -64,5 +65,15 @@
 }
 
 .task-list {
-  margin-top: 8%;
+  margin-top: 1%;
+}
+
+.task-input {
+  margin-bottom: 5%;
+}
+
+.date {
+  font-size: 13px;
+  color: #c4c4c4;
+  margin-bottom: 2%;
 }

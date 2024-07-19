@@ -27,6 +27,30 @@ const getMostRecentID = async () => {
   }
 };
 
+const markTaskDone = async (id) => {
+  const params = {
+    id: id,
+  };
+  const res = await api.post(`${backendEndpoint}/markDone`, params);
+  if (res.status === 200) {
+    return res;
+  } else {
+    return { message: "Something went wrong", status: res.status };
+  }
+};
+
+const undoTask = async (id) => {
+  const params = {
+    id: id,
+  };
+  const res = await api.post(`${backendEndpoint}/markUndone`, params);
+  if (res.status === 200) {
+    return res;
+  } else {
+    return { message: "Something went wrong", status: res.status };
+  }
+};
+
 const addNewTask = async (text) => {
   const params = {
     text: text,
@@ -39,4 +63,25 @@ const addNewTask = async (text) => {
   }
 };
 
-export { getCurrentTasks, getArchivedTasks, getMostRecentID, addNewTask };
+const updateTask = async (id, text) => {
+  const params = {
+    id: id,
+    updatedText: text,
+  };
+  const res = await api.post(`${backendEndpoint}/updateTask`, params);
+  if (res.status === 200) {
+    return res;
+  } else {
+    return { message: "Something went wrong", status: res.status };
+  }
+};
+
+export {
+  getCurrentTasks,
+  getArchivedTasks,
+  getMostRecentID,
+  addNewTask,
+  markTaskDone,
+  undoTask,
+  updateTask,
+};

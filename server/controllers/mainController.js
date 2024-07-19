@@ -61,4 +61,14 @@ router.post("/markDone", async (req, res, next) => {
   }
 });
 
+router.post("/markUndone", async (req, res, next) => {
+  try {
+    const id = req.body.id;
+    res.json(await todoOps.markUndone(id));
+  } catch (err) {
+    console.log(`Error while trying to marking task as undone`);
+    next(err);
+  }
+});
+
 module.exports = router;
