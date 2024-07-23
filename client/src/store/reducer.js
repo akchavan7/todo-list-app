@@ -2,7 +2,6 @@ import { produce } from "immer";
 import { getMostRecentID } from "../services/mainService";
 import { generateTimestamp } from "../utilities/helper";
 import * as actionType from "./actionTypes";
-import { act } from "react";
 
 const initialState = {
   currentTasks: [],
@@ -13,13 +12,11 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case actionType.INITIALIZE:
-      //   return state;
       return produce(state, (newState) => {
         newState.currentTasks = action.payload.currentTasks;
         newState.archivedTasks = action.payload.archivedTasks;
       });
     case actionType.TAB_CHANGE:
-      //   return state;
       return produce(state, (newState) => {
         newState.currentTasksView = action.payload.currentTasksView;
       });
@@ -66,7 +63,6 @@ export default function reducer(state = initialState, action) {
         newState.currentTasks.push(taskToRemove);
       });
     case actionType.UPDATE_TASK:
-      console.log(action.payload);
       return produce(state, (newState) => {
         newState.currentTasks = newState.currentTasks.map((task) => {
           if (task.id === action.payload.id) {
